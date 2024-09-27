@@ -79,7 +79,7 @@ export default function MobileNav({ onOpen, ...rest }) {
       />
 
       <Image
-        src={logo}
+        src='https://via.placeholder.com/150X50?text=Arula'
         boxSize='150px'
         display={{ base: 'flex', md: 'none' }}
       />

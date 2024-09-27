@@ -46,7 +46,7 @@ export default function SidebarContent({ onClose, ...rest }) {
       {...rest}
     >
       <Flex h='20' alignItems='center' mx='8' justifyContent='space-between'>
-        <Image src={logo} />
+        <Image src='https://via.placeholder.com/150X50?text=Arula' />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {Links.map((link) => (

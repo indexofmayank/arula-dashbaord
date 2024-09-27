@@ -4,13 +4,25 @@ import {
   FaProductHunt,
   FaShoppingCart,
   FaUserTie,
+  FaPhotoVideo,
+  FaTh,
+  FaFileVideo,
+  FaRocketchat,
+  FaBlenderPhone,
+  FaUser
 } from 'react-icons/fa';
 
 export const LinkItems = [
   { name: 'Home', url: '/', icon: <FaHome /> },
-  { name: 'Products', url: '/products', icon: <FaProductHunt /> },
+  { name: 'Product', url: '/product', icon: <FaProductHunt /> },
   { name: 'Orders', url: '/orders', icon: <FaShoppingCart /> },
   { name: 'Admins', url: '/admins', icon: <FaUserTie /> },
+  { name: 'Course', url: '/course', icon: <FaPhotoVideo />},
+  { name: 'Product Category', url: '/product-category', icon: <FaTh />},
+  { name: 'Course Category', url: '/course-category', icon: <FaFileVideo />},
+  { name: 'Consultation Category', url: '/consultation-category', icon: <FaRocketchat />},
+  { name: 'Bookings', url: '/bookings', icon: <FaBlenderPhone />},
+  { name: 'Users', url: '/users', icon: <FaUser />}
 ];
 
 export const orderStatusList = [
@@ -34,3 +46,8 @@ export const single_order_url = `${domain}/api/orders/`;
 export const update_order_status = `${domain}/api/admin/order/`;
 export const create_new_product = `${domain}/api/admin/product/new`;
 export const delete_review = `${domain}/api/admin/product/review/`;
+export const productCategory_url = `${domain}/api/productcategory/`;
+export const productCategoryTable_url = `${domain}/api/productcategory/table/`;
+export const courseCategory_url = `${domain}/api/coursecategory/`;
+export const course_url = `${domain}/api/course/`;
+export const courseForTable_url = `${domain}/api/course/table/`;

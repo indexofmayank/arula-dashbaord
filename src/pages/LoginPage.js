@@ -67,7 +67,7 @@ export default function LoginPage() {
     <Flex minH={'100vh'} align={'center'} justify={'center'} bg={'gray.50'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Image src={logo} alt='logo' w='50%' />
+          <Image src='https://via.placeholder.com/150X50?text=Arula' alt='logo' w='50%' />
         </Stack>
         <Box bg={'white'} rounded={'lg'} boxShadow={'lg'} p={8}>
           <Stack spacing={4}>

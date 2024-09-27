@@ -17,6 +17,14 @@ import SingleProductInfo from './SingleProductInfo';
 import Stars from './Stars';
 import SingleProductReviews from './SingleProductReviews';
 import PreLoader from './PreLoader';
+import CreateNewCourse from './CreateNewCourse';
+import CreateNewCategoryModal from './CreateNewCategoryModal';
+import ProductCategoryTable from './ProductCategoryTable';
+import UpdateProductCategoryModal from './udpateProductCategoryModal';
+import CreateNewCourseCategoryModal from './CreateNewCourseCategoryModal';
+import CourseCategoryTable from './CourseCategoryTable';
+import UpdateCourseCategoryModal from './UpdateCourseCategoryModal';
+import CourseTable from './CourseTable';
 
 export {
   SidebarWithHeader,
@@ -38,4 +46,12 @@ export {
   Stars,
   SingleProductReviews,
   PreLoader,
+  CreateNewCourse,
+  CreateNewCategoryModal,
+  ProductCategoryTable,
+  UpdateProductCategoryModal,
+  CreateNewCourseCategoryModal,
+  CourseCategoryTable,
+  UpdateCourseCategoryModal,
+  CourseTable
 };

@@ -147,11 +147,11 @@ function CreateNewProductModal() {
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create new product</ModalHeader>
+          <ModalHeader>Create new course</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Title</FormLabel>
               <Input
                 ref={initialRef}
                 placeholder='Product Name'

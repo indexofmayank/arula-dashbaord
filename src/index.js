@@ -7,15 +7,24 @@ import { UserProvider } from './context/user_context';
 import { OrderProvider } from './context/order_context';
 import { ProductProvider } from './context/product_context';
 import { AdminProvider } from './context/admin_context';
+import { CourseProvider } from './context/course_context';
+import { ProductCategoryProvider } from './context/productCategory_context';
+import { CourseCategoryProvider } from './context/courseCategory_context';
 
 ReactDOM.render(
   <UserProvider>
     <AdminProvider>
       <OrderProvider>
         <ProductProvider>
-          <ChakraProvider theme={theme}>
-            <App />
-          </ChakraProvider>
+          <CourseProvider>
+            <ProductCategoryProvider>
+              <CourseCategoryProvider>
+                <ChakraProvider theme={theme}>
+                  <App />
+                </ChakraProvider>
+              </CourseCategoryProvider>
+            </ProductCategoryProvider>
+          </CourseProvider>
         </ProductProvider>
       </OrderProvider>
     </AdminProvider>
