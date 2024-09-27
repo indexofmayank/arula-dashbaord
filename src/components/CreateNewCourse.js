@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import {
     Button,
     Input,
@@ -21,9 +21,12 @@ import {
     VStack,
     Checkbox,
     toast,
+    Select,
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { useCourseContext } from '../context/course_context';
+import {useCourseCategoryContext} from '../context/courseCategory_context';
+
 
 
 function CreateNewCourse() {
@@ -43,8 +46,14 @@ function CreateNewCourse() {
             video
         },
         updateNewCourseDetail,
-        createNewCourse
+        createNewCourse,
+
     } = useCourseContext();
+
+    const {
+        fetchDropdownCourseCategory,
+        courseCategoryForDropdown
+    } = useCourseCategoryContext();
 
     const [videoList, setVideoList] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -150,6 +159,11 @@ function CreateNewCourse() {
     }
 
 
+    useEffect(() => {
+        fetchDropdownCourseCategory();
+    }, []);
+
+
     return (
         <>
             <Button colorScheme='brown' onClick={onOpen}>
@@ -206,13 +220,20 @@ function CreateNewCourse() {
                         </FormControl>
                         <FormControl>
                             <FormLabel>category</FormLabel>
-                            <Input
-                                placeholder='category'
+                            <Select
+                                placeholder='select category'
                                 name='category'
                                 focusBorderColor='brown.500'
                                 value={category}
                                 onChange={updateNewCourseDetail}
-                            />
+                            >
+                                {courseCategoryForDropdown.map((cat, index) => {
+                                    const {name, _id} = cat;
+                                    return (
+                                        <option value={name}>{name}</option>
+                                    )
+                                })}
+                            </Select>
                         </FormControl>
                         <FormControl>
                             <FormLabel>language</FormLabel>
@@ -302,6 +323,8 @@ function CreateNewCourse() {
                         <Button
                             colorScheme='brown'
                             onClick={handleSubmit}
+                            isLoading={loading}
+                            loadingText='saving'
                         >
                             Save
                         </Button>

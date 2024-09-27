@@ -25,6 +25,8 @@ import CreateNewCourseCategoryModal from './CreateNewCourseCategoryModal';
 import CourseCategoryTable from './CourseCategoryTable';
 import UpdateCourseCategoryModal from './UpdateCourseCategoryModal';
 import CourseTable from './CourseTable';
+import CreateConsultationCategoryPage from './CreateConsultationCategoryPage';
+import ConsultancyCategoryTable from './ConsultancyCategoryTable';
 
 export {
   SidebarWithHeader,
@@ -53,5 +55,7 @@ export {
   CreateNewCourseCategoryModal,
   CourseCategoryTable,
   UpdateCourseCategoryModal,
-  CourseTable
+  CourseTable,
+  CreateConsultationCategoryPage,
+  ConsultancyCategoryTable
 };

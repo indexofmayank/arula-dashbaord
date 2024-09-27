@@ -12,7 +12,8 @@ import {
   CoursePage,
   CategoryPage,
   CourseCategoryPage,
-  UserPage
+  UserPage,
+  ConsulationCategoryPage
   
 } from './pages';
 
@@ -40,6 +41,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path="/course-category">
           <CourseCategoryPage />
+        </PrivateRoute>
+        <PrivateRoute exact path="/consultation-category">
+        <ConsulationCategoryPage />
         </PrivateRoute>
         <PrivateRoute exact path="/user">
           <UserPage />

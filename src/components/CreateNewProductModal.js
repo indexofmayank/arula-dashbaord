@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import {
   Button,
   Input,
@@ -20,11 +20,15 @@ import {
   Image,
   VStack,
   Checkbox,
+  Select,
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { useProductContext } from '../context/product_context';
+import {useProductCategoryContext} from '../context/productCategory_context';
+
 
 function CreateNewProductModal() {
+
   const {
     new_product: {
       name,
@@ -41,6 +45,13 @@ function CreateNewProductModal() {
     updateNewProductDetails,
     createNewProduct,
   } = useProductContext();
+
+  const {
+    productCategoryForDropdown_loading,
+    productCategoryForDropdown_error,
+    productCategoryForDropdown,
+    fetchDropdownProductCategory
+  } = useProductCategoryContext();
 
   const [imageList, setImageList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -138,6 +149,11 @@ function CreateNewProductModal() {
     }
   };
 
+  useEffect(() => {
+    fetchDropdownProductCategory();
+  }, []);
+
+  console.log(productCategoryForDropdown);
   return (
     <>
       <Button colorScheme='brown' onClick={onOpen}>
@@ -199,13 +215,20 @@ function CreateNewProductModal() {
 
             <FormControl mt={4}>
               <FormLabel>Category</FormLabel>
-              <Input
-                placeholder='Product Category'
+              <Select
+                placeholder='Select category'
                 name='category'
                 focusBorderColor='brown.500'
                 value={category}
                 onChange={updateNewProductDetails}
-              />
+              >
+                {productCategoryForDropdown.map((cat, index) => {
+                  const {name, _id} = cat;
+                  return (
+                    <option value={name}>{name}</option>
+                  )
+                })}
+              </Select>
             </FormControl>
 
             <FormControl mt={4}>

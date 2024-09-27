@@ -3,7 +3,8 @@ import axios from "axios";
 import reducer from '../reducers/course_reducer';
 import {
     course_url,
-    courseForTable_url
+    courseForTable_url,
+    deleteCourse_url
 } from '../utils/constants';
 import {
     CREATE_NEW_COURSE,
@@ -51,6 +52,7 @@ export const CourseProvider = ({children}) => {
             return {success, message};
         } catch (error) {
             const {success, message} = error.response.data;
+            fetchCourseForTable();
             return {success, message};
         }
     }
@@ -67,13 +69,26 @@ export const CourseProvider = ({children}) => {
         }
     }
 
+    const deleteCourse = async (id) => {
+        try {
+            const response = await axios.delete(`${deleteCourse_url}${id}`);
+            const {success , message} = response;
+            await fetchCourseForTable();
+            return {success, message};
+        } catch (error) {
+            const {success, message} = error.response.data;
+            return {success, message};
+        }
+    }
+
     return (
         <CourseContext.Provider
             value={{
                 ...state,
                 updateNewCourseDetail,
                 createNewCourse,
-                fetchCourseForTable
+                fetchCourseForTable,
+                deleteCourse
             }}
         >
             {children}

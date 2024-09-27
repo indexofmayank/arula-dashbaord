@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     Table,
     Thead,
@@ -20,18 +20,19 @@ import {
 } from '@chakra-ui/react';
 import { BiChevronDown } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import {useCourseContext} from '../context/course_context';
+import {useConsultationContext} from '../context/consultationCategory_context';
 
-function CourseTable({data = []}) {
+function ConsultancyCategoryTable({ data = [] }) {
 
     const {
-        deleteCourse
-    } = useCourseContext();
+        deleteConsultationCategory
+    } = useConsultationContext();
 
     const toast  = useToast();
 
+
     const handleDelete = async(id) => {
-        const response = await deleteCourse(id);
+        const response = await deleteConsultationCategory(id);
         if(response.success) {
             toast({
                 position: 'top',
@@ -56,39 +57,47 @@ function CourseTable({data = []}) {
             <Table variant="simple">
                 <Thead>
                     <Tr>
-                        <Th>Title</Th>
-                        <Th>Instruct name</Th>
-                        <Th>Price</Th>
-                        <Th>Category</Th>
-                        <Th></Th>
+                        <Th>Image</Th>
+                        <Th>Name</Th>
+                        <Th>Status</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {data.map((course, index) => {
-                        const {title, instructor_name, price, category, _id} = course;
+                    {data.map((category, index) => {
+                        const { image, name, status, _id } = category;
                         return (
                             <Tr key={index}>
                                 <Td>
-                                    {title}
+                                    <Image
+                                        src={image}
+                                        boxSize='100px'
+                                        objectFit='cover'
+                                        borderRadius='lg'
+                                    />
+                                </Td>
+                                <Td>{name}</Td>
+                                <Td>
+                                    <Switch
+                                        colorScheme='green'
+                                        isChecked={status}
+
+                                    />
                                 </Td>
                                 <Td>
-                                    {instructor_name}
-                                </Td>
-                                <Td>{price}</Td>
-                                <Td>{category}</Td>
-                                <Menu>
+                                    <Menu>
                                         <MenuButton as={Button} rightIcon={<BiChevronDown />}>
                                             Actions
                                         </MenuButton>
                                         <MenuList>
                                             <MenuItem>
-                                                {/* <UpdateCourseCategoryModal id={_id}/> */}
+                                                {/* <UpdateCourseCategoryModal id={_id} /> */}
                                             </MenuItem>
                                             <MenuItem onClick={() => handleDelete(_id)}>
                                                 Delete
                                             </MenuItem>
                                         </MenuList>
                                     </Menu>
+                                </Td>
 
                             </Tr>
                         )
@@ -99,4 +108,4 @@ function CourseTable({data = []}) {
     );
 }
 
-export default CourseTable;
+export default ConsultancyCategoryTable;

@@ -9,11 +9,16 @@ import {
     GET_SINGLE_PRODUCTCATEGORY_BEGIN,
     GET_SINGLE_PRODUCTCATEGORY_ERROR,
     GET_SINGLE_PRODUCTCATEGORY_SUCCESS,
-    UPDATE_EXISTING_PRODUCTCATEGORY
+    UPDATE_EXISTING_PRODUCTCATEGORY,
+    GET_PRODUCTCATEGORYFORDROPDOWN_BEGIN,
+    GET_PRODUCTCATEGORYDROPDOWN_ERROR,
+    GET_PRODUCTCATEGORYDROPDOWN_SUCCESS
+
 } from '../actions';
 import {
     productCategory_url,
-    productCategoryTable_url
+    productCategoryTable_url,
+    dropdownForProductCategory_url
 } from '../utils/constants'
 const initialState = {
     new_productCategory: {
@@ -27,6 +32,9 @@ const initialState = {
     single_productCategory_laoding: false,
     single_productCategory_error: false,
     single_productCategory: {},
+    productCategoryForDropdown_loading: false,
+    productCategoryForDropdown_error: false,
+    productCategoryForDropdown: []
 };
 
 const ProductCategoryContext = React.createContext();
@@ -62,6 +70,7 @@ export const ProductCategoryProvider = ({children}) => {
         try {
             const response = await axios.post(productCategory_url, productCategory);
             const {success, data} = response.data;
+            fetchAllProductCategory();
             return {success, data};
         } catch (error) {
             const {success, message} = error.response.data;
@@ -85,6 +94,7 @@ export const ProductCategoryProvider = ({children}) => {
             dispatch({type:GET_SINGLE_PRODUCTCATEGORY_BEGIN });
             const response = await axios.get(`${productCategory_url}${id}`);
             const {data} = response.data;
+            console.log(data);
             dispatch({type: GET_SINGLE_PRODUCTCATEGORY_SUCCESS, payload: data});
         } catch (error) {
             dispatch({type:GET_SINGLE_PRODUCTCATEGORY_ERROR });
@@ -102,6 +112,19 @@ export const ProductCategoryProvider = ({children}) => {
         }
     }
 
+    const fetchDropdownProductCategory = async () => {
+        try {
+            dispatch({type: GET_PRODUCTCATEGORYFORDROPDOWN_BEGIN});
+            const response = await axios.get(dropdownForProductCategory_url);
+            const {data} = response.data;
+            dispatch({type: GET_PRODUCTCATEGORYDROPDOWN_SUCCESS, payload: data});
+        } catch (error) {
+            dispatch({type: GET_PRODUCTCATEGORYDROPDOWN_ERROR});
+            const {success, message} = error.response.data;
+            return {success, message};
+        }
+    }
+
     
     return (
         <ProductCategoryContext.Provider
@@ -113,7 +136,8 @@ export const ProductCategoryProvider = ({children}) => {
                 deleteProductCategory,
                 fetchProductCategoryById,
                 updateExistingProductCategoryDetail,
-                udpateProductCategory
+                udpateProductCategory,
+                fetchDropdownProductCategory
             }}
         >
             {children}

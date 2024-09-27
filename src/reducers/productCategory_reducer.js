@@ -6,7 +6,10 @@ import {
     GET_SINGLE_PRODUCTCATEGORY_BEGIN,
     GET_SINGLE_PRODUCTCATEGORY_ERROR,
     GET_SINGLE_PRODUCTCATEGORY_SUCCESS,
-    UPDATE_EXISTING_PRODUCTCATEGORY
+    UPDATE_EXISTING_PRODUCTCATEGORY,
+    GET_PRODUCTCATEGORYFORDROPDOWN_BEGIN,
+    GET_PRODUCTCATEGORYDROPDOWN_ERROR,
+    GET_PRODUCTCATEGORYDROPDOWN_SUCCESS
 
 } from '../actions';
 
@@ -48,6 +51,32 @@ const productCategory_reducer = (state, action) => {
             single_productCategory: {...state.single_productCategory, [name]: value}
         }
     }
+
+    if(action.type === GET_PRODUCTCATEGORYFORDROPDOWN_BEGIN) {
+        return {
+            ...state,
+            productCategoryForDropdown_loading: true,
+            productCategoryForDropdown_error: false
+        }
+    }
+
+    if(action.type === GET_PRODUCTCATEGORYDROPDOWN_ERROR) {
+        return {
+            ...state,
+            productCategoryForDropdown_loading: false,
+            productCategoryForDropdown_error: true
+        }
+    }
+
+    if(action.type === GET_PRODUCTCATEGORYDROPDOWN_SUCCESS) {
+        return {
+            ...state,
+            productCategoryForDropdown_loading: false,
+            productCategoryForDropdown: action.payload
+        }
+    }
+
+
     throw new Error(`No Matching "${action.type}" - action type`);
 
 }

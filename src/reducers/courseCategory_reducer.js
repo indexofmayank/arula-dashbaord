@@ -5,7 +5,9 @@ import {
     GET_ALLCOURSECATEGORY_SUCCESS,
     GET_SINGLECOURSECATEGORY_BEGIN,
     GET_SINGLECOURSECATEGORY_ERROR,
-    GET_SINGLECOURSECATEGORY_SUCCESS
+    GET_SINGLECOURSECATEGORY_SUCCESS,
+    GET_COURSECATEGORY_SUCCESS,
+
 
 
 } from '../actions';
@@ -63,6 +65,14 @@ const courseCategory_reducer = (state, action) => {
             single_courseCategory: action.payload
         }
     }
+
+    if(action.type === GET_COURSECATEGORY_SUCCESS) {
+        return {
+            ...state,
+            courseCategoryForDropdown: action.payload
+        }
+    }
+
 }
 
 export default courseCategory_reducer;

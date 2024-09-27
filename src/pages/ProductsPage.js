@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ProductsTable,
   SidebarWithHeader,
@@ -7,6 +7,7 @@ import {
 import { HStack, VStack, Spinner, Heading, Button } from '@chakra-ui/react';
 import { MdOutlineRefresh } from 'react-icons/md';
 import { useProductContext } from '../context/product_context';
+import {useProductCategoryContext} from '../context/productCategory_context';
 
 function ProductsPage() {
   const {
@@ -16,9 +17,11 @@ function ProductsPage() {
     fetchProducts,
   } = useProductContext();
 
+
   const handleRefresh = async () => {
     await fetchProducts();
   };
+
 
   if (loading) {
     return (

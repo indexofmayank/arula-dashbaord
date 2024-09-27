@@ -15,7 +15,8 @@ function CategoryPage() {
         productCategoryForTable,
         productCategoryForTable_loading: loading,
         productCategoryForTable_error: error,
-        fetchAllProductCategory
+        fetchAllProductCategory,
+    
     } = useProductCategoryContext();
 
 

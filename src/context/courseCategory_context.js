@@ -2,7 +2,8 @@ import React, {useContext, useEffect, useReducer} from "react";
 import axios from "axios";
 import reducer from '../reducers/courseCategory_reducer';
 import {
-    courseCategory_url
+    courseCategory_url,
+    dropdownForCourCategory
 } from '../utils/constants';
 import {
     CREATE_NEW_COURSE_CATEGORY,
@@ -12,7 +13,8 @@ import {
     GET_SINGLECOURSECATEGORY_BEGIN,
     GET_SINGLECOURSECATEGORY_ERROR,
     GET_SINGLECOURSECATEGORY_SUCCESS,
-    UPDATE_EXISTING_COURSE_CATEGORY
+    UPDATE_EXISTING_COURSE_CATEGORY,
+    GET_COURSECATEGORY_SUCCESS
 } from '../actions';
 
 const initialState = {
@@ -26,7 +28,8 @@ const initialState = {
     courseCategoryForTable: [],
     single_courseCategory_loading: false,
     single_courseCategory_error: false,
-    single_courseCategory: {}
+    single_courseCategory: {},
+    courseCategoryForDropdown: []
 
 }
 
@@ -92,9 +95,17 @@ export const CourseCategoryProvider = ({children}) => {
         }
     }
 
-    // useEffect(() => {
-    //     fetchCourseCategoryForTable()
-    // }, []);
+    const fetchDropdownCourseCategory = async () => {
+        try {
+            const response = await axios.get(dropdownForCourCategory);
+            const {data} = response.data;
+            dispatch({type: GET_COURSECATEGORY_SUCCESS, payload: data});
+        } catch (error) {
+            console.error(error);
+            const {success, message} = error.response.data;
+            return {success, message};
+        }
+    }
 
     return (
         <CourseCategoryContext.Provider
@@ -105,7 +116,8 @@ export const CourseCategoryProvider = ({children}) => {
                 fetchCourseCategoryForTable,
                 deleteCourseCategory,
                 fetchCourseCategoryById,
-                updateExistingCourseCategoryDetail
+                updateExistingCourseCategoryDetail,
+                fetchDropdownCourseCategory
             }}
         >
             {children}

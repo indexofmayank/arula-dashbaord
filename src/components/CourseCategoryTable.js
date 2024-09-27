@@ -64,7 +64,7 @@ function CourseCategoryTable({data = []}) {
                 <Thead>
                     <Tr>
                         <Th>Image</Th>
-                        <Th>name</Th>
+                        <Th>Name</Th>
                         <Th>Status</Th>
                         <Th></Th>
                     </Tr>
