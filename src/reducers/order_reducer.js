@@ -23,23 +23,23 @@ const order_reducer = (state, action) => {
       //   return new Date(b.createdAt) - new Date(a.createdAt);
       // })
       // .slice(0, 11);
-    const pending_orders = orders.filter(
-      (order) => order.orderStatus === 'processing'
-    );
-    const delivered_orders = orders.filter(
-      (order) => order.orderStatus === 'delivered'
-    );
-    const total_revenue = orders.reduce((total, order) => {
-      total += order.totalPrice;
-      return total;
-    }, 0);
+    // const pending_orders = orders.filter(
+    //   (order) => order.orderStatus === 'processing'
+    // );
+    // const delivered_orders = orders.filter(
+    //   (order) => order.orderStatus === 'delivered'
+    // );
+    // const total_revenue = orders.reduce((total, order) => {
+    //   total += order.totalPrice;
+    //   return total;
+    // }, 0);
     return {
       ...state,
-      orders_loading: false,
-      orders,
-      pending_orders,
-      delivered_orders,
-      total_revenue,
+      // orders_loading: false,
+      // orders,
+      // pending_orders,
+      // delivered_orders,
+      // total_revenue,
       recent_orders,
     };
   }
