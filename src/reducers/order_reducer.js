@@ -19,10 +19,10 @@ const order_reducer = (state, action) => {
     const orders = action.payload;
     let recent_orders = action.payload;
     recent_orders = recent_orders
-      .sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      })
-      .slice(0, 11);
+      // .sort((a, b) => {
+      //   return new Date(b.createdAt) - new Date(a.createdAt);
+      // })
+      // .slice(0, 11);
     const pending_orders = orders.filter(
       (order) => order.orderStatus === 'processing'
     );
